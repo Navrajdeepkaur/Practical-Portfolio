@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: lavender;">
+    <h2>My JavaScript Webpage</h2>
+
+    <p>My name is Navraj Deep Kaur Gill</p>
+    <p id="string"></p>
+    <p id="details"></p>
+    <p id="units"></p>
+    <p>The name of this month is:</p>
+    <p id="month"></p>
+    <p>Weeks included in Practical Portfolio submission are:</p>
+
+    <ul id="weeks">
+        <li v-for="item in items" :key="item.message">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <script>
+        let campus = "Waurn Ponds Campus";
+        var x = 221086604;
+        const units = ["SIT182", "SIT103", "SIT120", "MIS201"];
+        const d = new Date();
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var example1 = new Vue(
+            {
+                el: '#weeks',
+                data: {
+                    items:
+                        [
+                            { message: 'Week 1' },
+                            { message: 'Week 2' },
+                            { message: 'Week 3' },
+                            { message: 'Week 4' },
+                            { message: 'Week 5' },
+                            { message: 'Week 6' },
+                            { message: 'Week 7' },
+                        ]
+                }
+            }
+        )
+
+        document.getElementById("details").innerHTML = campus;
+        document.getElementById("string").innerHTML = "Student ID: " + x.toString();
+        document.getElementById("units").innerHTML = units;
+        document.getElementById("month").innerHTML = months[d.getMonth()];
+    </script>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+</body>
+
+</html>
