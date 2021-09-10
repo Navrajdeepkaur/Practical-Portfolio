@@ -1,0 +1,68 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<body style="background-color:lavender;">
+
+    <div class="hai">Composing with Components</div>
+    <div id="list">
+        <ol>
+          <todo-item
+            v-for="item in Mobiles"
+            v-bind:todo="item"
+            v-bind:key="item.id">
+          </todo-item>
+        </ol>
+    </div>
+    <div class="hoi">Handling User Input</div>
+    <div id="ulta">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Click to Reverse</button>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>'
+        })
+
+        var list = new Vue({
+        el: '#list',
+        data: {
+            Mobiles: [
+            { id: 0, text: 'Samsung Galaxy S21 Ultra' },
+            { id: 1, text: 'iPhone 12 Pro Max' },
+            { id: 2, text: 'Huawei P50 Pro' },
+            { id: 3, text: 'OnePlus 9 Pro' },
+            { id: 4, text: 'Mi 11 Ultra' }
+            ]
+        }
+        })
+
+        var ulta = new Vue({
+        el: '#ulta',
+        data: {
+            message: 'Flagship Smartphones'
+        },
+        methods: {
+            reverseMessage: function () {
+            this.message = this.message.split('').reverse().join('')
+            }
+        }
+        })
+    </script>
+
+    <style>
+        div.hai{
+            text-decoration: underline;
+            padding-bottom: 20px;
+            font-size: 30px;
+            
+        }
+
+        div.hoi{
+            text-decoration: underline;
+            padding-top: 20px;
+            font-size: 30px;
+        }
+    </style>
+</body>
+</html>
