@@ -1,0 +1,166 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<body>
+    <p1>Local and Global Registration</p1>
+    <div id="local"></div>
+    <p1>Coding Props</p1>
+    <div id="Pros" class="Pros"><child :text="message"></child></div>
+    <p1>Custom Events</p1>
+    <p> </p>
+    <div id="boom">
+        <base-checkbox v-model="lovingVue"></base-checkbox>
+    </div>
+    <p1>Slots</p1>
+    <div id="app">
+        <section class="hero is-fullheight is-warning is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <p class="title is-1">{{ title }}</p>
+                    <p class="subtitle is-3">{{ subtitle }}</p>
+                    <child-component>
+                        <p slot="bottom">The one at the top but displayed at the bottom</p>
+                        <p>The one in middle</p>
+                        <p slot="top">The one at the bottom but displayed at the top</p>
+                    </child-component>
+                    <child-component>And the child component</child-component>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="text/x-template" id="child-component">
+        <div>
+          <slot name="top">
+          </slot>
+          <slot>
+            <p>Hello from the child!</p>
+          </slot>
+          <slot name="bottom">
+          </slot>
+        </div>
+    </script>
+
+    <script>
+        const PromptComponent = {
+            template: '<div><p>${message}</p><button @click="sayHi">Push</button></div>',
+            delimiters: ['${', '}'],
+            data: function () {
+                return {
+                    message: 'Click below'
+                }
+            },
+
+            methods: {
+                sayHi: function () {
+                    alert('Mission Sucess!');
+                }
+            }
+        };
+
+        let vm = new Vue({
+            el: '#local',
+            components: {
+                'prompt-component': PromptComponent
+            },
+
+            data: {
+                num: 1
+            },
+
+            template: `<prompt-component/>`
+        });
+
+        Vue.component('child', {
+            props: {
+                text: {
+                    type: String,
+                    required: true
+                }
+            },
+            template: `<div>{{ text }}</div>`
+        });
+
+        new Vue({
+            el: '#Pros',
+            data() {
+                return {
+                    message: 'Pros Example'
+                }
+            }
+        })
+
+        Vue.component('base-checkbox', {
+            model: {
+                prop: 'checked',
+                event: 'change'
+            },
+            props: {
+                checked: Boolean
+            },
+            template: `
+            <div>
+            <input
+            type="checkbox"
+            v-bind:checked="checked"
+            v-on:change="$emit('change', $event.target.checked)"
+            >
+            </div>
+        `
+        });
+
+        new Vue({
+            el: '#boom',
+            data() {
+                return {
+                    lovingVue: true
+                }
+            }
+        })
+
+        Vue.component('child-component', {
+            template: '#child-component',
+            data() {
+                return {
+                    childTitle: 'title from child component',
+                    childSubtitle: 'subtitle from child component'
+                }
+            },
+            props: {
+                subtitle: {
+                    type: String,
+                    required: true
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    title: 'Vue component 1',
+                    subtitle: 'Vue component 2'
+                }
+            }
+        })
+
+    </script>
+
+    <style>
+        body {
+            background-color: lavender;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        p1 {
+            font-size: 25px;
+            text-decoration: underline;
+            padding-bottom: 15px;
+        }
+
+        div.Pros {
+            padding-top: 20px;
+        }
+    </style>
+
+</body>
+
+</html>
