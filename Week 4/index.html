@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<body style="background-color: peachpuff;">
+    <div id="x" class="hoi">
+        {{ message }}
+    </div>
+    <div id="y" class="hai">
+        <span v-bind:title="message">
+            Keep your mouse on this text to see the dynamically bound text
+        </span>
+    </div>
+    <div class="head">
+        Conditionals and Loops
+    </div>
+    <div id="z">
+        <span v-if="seen">This text is not invisible</span>
+    </div>
+    <script>
+        var x = new Vue({
+        el: '#x',
+        data: {
+            message: 'Declarative Rendering'
+        }
+        })
+
+        var y = new Vue({
+        el: '#y',
+        data: {
+            message: 'This webpage was loaded on ' + Date().toLocaleString()
+        }
+        })
+
+        var z = new Vue({
+        el: '#z',
+        data: {
+            seen: true
+        }
+        })
+    </script>
+    <style>
+        div.hoi{
+            font-size: 25px;
+            text-decoration: underline;
+            padding-bottom: 20px;
+        }
+
+        div.hai{
+            padding-bottom: 20px;
+        }
+
+        div.head{
+            font-size: 25px;
+            text-decoration: underline;
+            padding-bottom: 20px;
+        }
+    </style>
+</body>  
+</html>
