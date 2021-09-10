@@ -1,0 +1,80 @@
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body style="background-color:lightblue ;">
+    <p>User Inputs</p>
+
+    <div id="dog">
+        <p1>Name</p1>
+        <input type="text" v-model.lazy="Name" placeholder="Enter your name">
+        <p1>Password</p1>
+        <input type="text" v-model.trim="Password" placeholder="Enter your Password">
+    </div>
+    <p>Check Box</p>
+    <div id="god" class="d1">
+        <input type="checkbox" id="80 Marks" value="80 Marks" v-model="checkedNames" />
+        <label for="80 Marks">HD</label>
+        <input type="checkbox" id="70% Marks" value="70% Marks" v-model="checkedNames" />
+        <label for="70% Marks">D</label>
+        <input type="checkbox" id="60%" value="60%" v-model="checkedNames" />
+        <label for="60%">C</label>
+        <input type="checkbox" id="50%" value="50%" v-model="checkedNames" />
+        <label for="50%">P</label>
+        <br />
+        <span>Checked names: {{ checkedNames }}</span>
+      </div>
+
+      <p>Dynamic Option Rendering</p>
+
+      <div id="body" class="d2">
+        <select v-model="selected">
+          <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+      </div>
+
+      <script>
+            var app= new Vue({
+                el: "#god",
+              data() {
+                return {
+                checkedNames: []
+                }
+            }
+            })
+
+            var app= new Vue({
+                el:"#body",
+            data() {
+                return {
+                selected: 'A',
+                options: [
+                    { text: '80 Marks', value: 'Outstanding' },
+                    { text: '70 Marks', value: 'Excellent' },
+                    { text: '60 Marks', value: 'Good' },
+                    { text: '50 Marks', value: 'Need improvement' }
+                ]
+                }
+            }
+            })
+      </script>
+      <style>
+          .body {
+            color: white;
+        }
+
+        div.d1,div.d2{
+            padding-bottom:20px;
+        }
+
+        p{
+            font-size: 30px;
+            text-decoration: underline;
+        }
+        
+      </style>
+</body>
+</html>
